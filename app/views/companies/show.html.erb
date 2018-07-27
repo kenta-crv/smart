@@ -1,0 +1,359 @@
+<p id="notice"><%= notice %></p>
+
+
+    
+                                                        <!-- 企業情報 -->
+
+
+  <div class="beige-wrapper">
+  
+            <div class="heading"><h2>顧客詳細情報</h2>
+            <p>detailed information</p></div>
+
+<div class="side">  
+<table>
+      	<tbody>
+      	<caption class="heading">会社情報</caption>
+      				<tr>
+      					<th>会社名</th>
+        				<td><%= @company.company %></td>
+      				</tr>
+      				<tr>
+        				<th>姓</th>
+        				<td><%= @company.first_name %></td>
+      				</tr>
+      				<tr>
+        				<th>名</th>
+        				<td><%= @company.last_name %></td>
+      				</tr>
+      				<tr>
+        				<th>セイ</th>
+        				<td><%= @company.first_kana %></td>
+      				</tr>
+      				<tr>
+        				<th>セイ</th>
+        				<td><%= @company.last_kana %></td>
+      				</tr>
+      				<tr>
+        				<th>電話番号</th>
+        				<td><%= @company.tel %></td>
+      				</tr>
+      				<tr>
+        				<th>携帯番号</th>
+        				<td><%= @company.mobile %></td>
+      				</tr>
+      				<tr>
+        				<th>FAX番号</th>
+        				<td><%= @company.fax %></td>
+      				</tr>
+      				<tr>
+        				<th>メールアドレス</th>
+        				<td><%= @company.e_mail %></td>
+      				</tr>
+     				 <tr>
+        				<th>郵便番号</th>
+        				<td><%= @company.postnumber %></td>
+      				</tr>
+      				 <tr>
+        				<th>都道府県</th>
+        				<td><%= @company.prefecture %></td>
+      				</tr>
+      				<tr>
+        				<th>市町村</th>
+        				<td><%= @company.city %></td>
+      				</tr>
+      				<tr>
+        				<th>都道府県</th>
+        				<td><%= @company.town %></td>
+      				</tr>
+      				<tr>
+        				<th>資本金</th>
+        				<td><%= @company.caption %></td>
+      				</tr>
+      				<tr>
+        				<th>労働保険番号</th>
+        				<td><%= @company.labor_number %></td>
+      				</tr>
+      				<tr>
+        				<th>雇用保険番号</th>
+        				<td><%= @company.employment_number %></td>
+      				</tr>
+      	</tbody>
+</table>  		   
+</br>
+</br>
+
+                                            <!-- データ添付 -->
+                                            
+<table>
+    <tbody>
+      	<tr>
+      	      <th colspan="2">ファイル追加</th>
+        </tr>
+        <tr>
+        <% if @company.pictures.any? %>
+      	          <% @company.pictures.each do |picture| %>
+      	      <th>
+      	          <%= picture.picture %> 
+      	      </th>
+      	</tr>
+        <tr>
+      	      <td>
+      	              <%= link_to '[削除]',
+                                company_picture_path(@company, picture),
+                                method: :delete,
+                                class: 'command',
+                                data: { confirm: '本当に削除しますか？' } %>
+                  
+      	      </td>
+      	</tr>
+      	      <%end%>
+      	<%end%>
+        </tr>
+        <%= form_for ([@company, @company.pictures.build]) do |f| %>
+        <tr>
+      	      <td><%= f.file_field :picture, id: :book_picture %></td>
+       </tr>
+       <tr>
+      	      <td><%= f.submit %></td>
+        </tr>
+    </tbody>
+</table>
+                  <%end%>
+
+
+
+
+                                            <!-- 対応履歴 -->
+
+
+
+<table>
+    <tbody>
+      	<tr>
+      	      <th colspan="2">対応履歴</th>  
+      	</tr>
+      	<tr>
+      	<% if @company.comments.any? %>
+                    <% @company.comments.each do |comment| %>
+      	      <td>     
+                        <%= comment.body %>
+          	  </td>
+      	      <td>
+      	              <%= link_to '[削除]',
+                                company_comment_path(@company, comment),
+                                method: :delete,
+                                class: 'command',
+                                data: { confirm: '本当に削除しますか？' } %>
+                  
+      	      </td>
+      	      <% end %>
+                   <% end %>
+      	 </tr>
+      	 <tr>
+      	  <td  colspan="2">
+      	          <%= form_for ([@company, @company.comments.build]) do |f| %>
+                        <%= f.text_area :body %>
+                                <%= f.submit %>
+                  <%end%>
+      	  </td>
+      	</tr>
+   </tbody>
+</table>   
+
+
+</div>
+
+
+
+                            
+                  
+
+<!-- 人材開発支援等助成金　有期実習型訓練 -->
+
+<%= form_for([@company, @company.infos.build]) do |f| %>
+
+<table>
+      	<tbody>
+      	<caption class="heading">有期実習型訓練</caption>
+      				<tr>
+      					<th colspan="3">進捗</th>
+        				<th colspan="3">制度開始日</th>
+      				</tr>
+      				<tr>
+      				  <td colspan="3"><%= f.text_field :limited_progress %></td>
+      				  <td colspan="3"><%= f.text_field :limited_start %></td>
+      				</tr>
+      				<tr>
+      					<th>申込者</th>
+        				<th>開始日</th>
+        				<th>カリキュラム</th>
+        				<th>OFF-JT</th>
+        				<th>OJT</th>
+        				<th>支給申請開始日</th>
+        			</tr>
+        			<tr>
+        				<td><%= f.text_field :limited_each_name %></td>
+        				<td><%= f.text_field :limited_each_start %></td>
+        				<td><%= f.text_field :limited_each_curriculum %></td>
+        				<td><%= f.text_field :limited_offjt_time%></td>
+        				<td><%= f.text_field :limited_ojt_time %></td>
+        				<td><%= f.text_field :limited_supply %></td>
+      				</tr>
+      				<tr>
+      				    <th colspan="6">コメント</th>
+      				</tr>
+      				<tr>
+        				<td colspan="6"><%= f.text_field :limited_comment %></td>
+      				</tr>
+      	  </tbody>
+</table>
+</br>
+
+
+<!-- キャリアアップ助成金　正社員化コース -->
+<table>
+      	<tbody>
+      	<caption class="heading">キャリアアップ助成金　正社員化コース</caption>
+      				<tr>
+      					<th colspan="3">進捗</th>
+        				<th colspan="3">制度開始日</th>
+      				</tr>
+      				<tr>
+      				  <td colspan="3">AAA</td>
+      				  <td colspan="3">1111/11/11</td>
+      				</tr>
+      				<tr>
+      					<th>申込者</th>
+        				<th>入社日</th>
+        				<th>転換日</th>
+        				<th>支給申請開始日</th>
+        			</tr>
+        			<tr>
+        				<td>山田太郎</td>
+        				<td>2018/1/1</td>
+        				<td>2018/7/1</td>
+        				<td>2019/3/2</td>
+      				</tr>
+      				<tr>
+      				    <th colspan="5">コメント</th>
+      				</tr>
+      				<tr>
+        				<td colspan="5"></td>
+      				</tr>
+      	  </tbody>
+</table>
+</br>
+
+
+
+<!-- 各制度コース（企業内人材開発推進助成金・キャリア形成促進助成金・人材開発支援等助成金）-->
+
+
+<table>
+      	<tbody>
+      	<caption class="heading">各制度コース</caption>
+      				<tr>
+      					<th colspan="3">進捗</th>
+        				<th colspan="2">制度開始日</th>
+      				</tr>
+      				<tr>
+      				  <td colspan="3">AAA</td>
+      				  <td colspan="2">1111/11/11</td>
+      				</tr>
+      				<tr>
+      					<th>助成金</th>
+        				<th>制度</th>
+        				<th>実施日</th>
+        				<th>支給申請開始日</th>
+        				<th>コメント</th>
+        			</tr>
+        			<tr>
+        				<td>企業内</td>
+        				<td>職業</td>
+        				<td>2018/1/1</td>
+        				<td>2018/7/1</td>
+        				<td>なし</td>
+      				</tr>
+      				<tr>
+      				    <th colspan="5">コメント</th>
+      				</tr>
+      				<tr>
+        				<td colspan="5"></td>
+      				</tr>
+      	  </tbody>
+</table>
+</br>
+
+
+
+                                                            <!-- 勤怠状況 -->
+
+<table>
+      	<tbody>      	      
+      		<caption class="heading">就業規則情報</caption>
+      				<tr>
+      					<th>試用期間開始</th>
+        				<td></td>
+        				<th>所定労働時間</th>
+        				<td></td>      					
+      				</tr>
+      				<tr>
+      					<th>勤務開始時間</th>
+        				<td></td>
+        				<th>休憩開始時間</th>
+        				<td></td>
+      				</tr>
+      				<tr>
+      					<th>休憩終了時間</th>
+        				<td></td>
+      					<th>勤務終了時間</th>
+        				<td></td>
+      				</tr>
+      				<tr>
+      					<th>休日</th>
+        				<td></td>
+      					<th>手当</th>
+        				<td></td>
+      				</tr>
+      				<tr>
+      					<th>手当詳細</th>
+        				<td></td>
+      					<th>給料締日</th>
+        				<td></td>
+      				</tr>
+      				<tr>
+      					<th>給料支払日</th>
+        				<td></td>
+      					<th>支払方法</th>
+        				<td></td>
+      				</tr>
+      			    <tr>
+      					<th>控除</th>
+        				<td></td>
+      				</tr>
+    	</tbody>
+</table>  
+
+
+  <%= f.submit %>
+<% end %>
+
+
+                                                        <!-- 勤怠状況 -->
+<table>
+      	<tbody>
+      	      		<caption class="heading">勤怠管理SMART</caption>
+      				<tr>
+      					<th>勤怠者</th>
+        				<th>出勤状況</th>
+        				<th>賃金台帳</th>
+        			</tr>
+        			<tr>
+        				<td>山田太郎</td>
+        				<td></td>
+        				<td></td>
+      				</tr>
+      	  </tbody>
+</table>
+</br>

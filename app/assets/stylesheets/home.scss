@@ -1,0 +1,41 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+#time_now{
+	font-size:45px;
+	font-weight:bold;
+	color: rgba(0,94,94,1.0); 
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	height:150px;
+}
+
+.square_btn{
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #2CA676;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+}
+.square_btn:active {/*ボタンを押したとき*/
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+.stumps{
+	text-align:center;
+	margin-top:0px;
+}
+
+.stump{
+	margin:20px 10px;
+}

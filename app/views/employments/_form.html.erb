@@ -1,0 +1,60 @@
+<%= form_for @employment do |f|%>
+
+    <table>
+     <tbody>
+      <tr>
+        <th>試用期間</th>
+        <td><%= f.text_field :trial_period %></td>
+　  </tr>
+     <tr>
+        <th>勤務開始時間</th>
+        <td><%= f.text_field :work_start %></td>
+　  </tr>
+     <tr>
+        <th>休憩開始時間</th>
+        <td><%= f.text_field :break_in %></td>
+　  </tr>
+     <tr>
+        <th>休憩終了時間</th>
+        <td><%= f.text_field :break_out %></td>
+　  </tr>
+     <tr>
+        <th>勤務終了時間</th>
+        <td><%= f.text_field :work_out %></td>
+　  </tr>
+     <tr>
+        <th>休日</th>
+        <td><%= f.text_field :holiday %></td>
+　  </tr>
+     <tr>
+        <th>手当</th>
+        <td><%= f.text_field :allowance %></td>
+　  </tr>
+     <tr>
+        <th>手当詳細</th>
+        <td><%= f.text_field :allowance_contents %></td>
+　  </tr>
+     <tr>
+        <th>給料締め日</th>
+        <td><%= f.text_field :closing_on %></td>
+　  </tr>
+     <tr>
+        <th>給料支払い日</th>
+        <td><%= f.text_field :payment_on %></td>
+　  </tr>
+     <tr>
+        <th>支払方法</th>
+        <td><%= f.text_field :method_payment %></td>
+　  </tr>
+      <tr>
+        <th>控除</th>
+        <td><%= f.text_field :desuction%></td>
+　  </tr>
+        <tr>
+			<td colspan="2"> 
+				<%= f.submit '登録', data: { confirm: '登録しますか？'}%>
+			</td>
+		</tr>
+	</tbody>
+ </table>
+<%end%>

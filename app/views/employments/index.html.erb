@@ -1,0 +1,34 @@
+
+<div class="beige-wrapper">
+ 
+   
+            <div class="heading"><h2>就業規則一覧</h2>
+            <p>Employment List</p></div>
+
+
+   <table>
+     <tbody>
+      <tr>
+        <th>タイトル</th>
+        <th>編集/削除</th>
+　  </tr>
+      <tr>
+      <% @employments.each do |employment|%>
+        <td><%= link_to employment.trial_period, employment_path(employment)  %></td>
+        <td><%= link_to '編集', edit_employment_path(employment), class: 'command'%>
+			            ｜ <%= link_to '削除', 
+			            	employment_path(employment), 
+			            	method: :delete, 
+			            	class: 'command',
+			            	data: { confirm: '本当に削除しますか？'} %></td>
+
+      </tr>
+      <% end %>
+      </tbody>
+    </table> 
+
+
+
+</div>
+
+

@@ -1,0 +1,210 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ 
+ 
+ 
+                                                         /*ベース情報*/
+* {
+  box-sizing: border-box;
+}
+
+/*書体はヒラギノフォントを利用します。*/
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN";
+  width:100%;
+  background-color:rgba(242,242,225,1.0);   /*ベージュ:バックカラー*/
+}
+
+                                                    /*フォントの指定はなし*/
+a {
+  text-decoration: none;
+}
+
+
+
+
+                                                    /*ヘッダーの始まり*/
+/*幅・位置の指定*/
+.container {
+  max-width: 1170px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+/*ヘッダーのベース設定*/
+header {
+  height: 65px;
+  width: 100%;
+  background-color: #217B57;      /*ヘッダーカラーグリーン*/
+  position :fixed;
+  top: 0;
+  z-index: 10;
+}
+
+/*ロゴ指定*/
+.menu_icon {
+  height:65px;
+}
+
+/*ロゴは左へ*/
+.header-left {
+  float: left;
+}
+
+/*ヘッダーナビは右へ*/
+.header-right {
+  float: right;
+  margin-right: -25px;
+  font-size:15px;
+  text-shadow: 2px 3px 1px #000;
+}
+
+/*ヘッダーナビの位置設定*/
+.header-right a {
+  line-height: 65px;
+  padding: 0 15px;
+  color: white;
+  display: block;
+  float: left;
+  position: relative;
+  transition: all 0.5s;
+}
+
+/*ヘッダーの上にマウスを置くと色変化*/
+.header-right a:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+                                                                /*ヘッダーの終わり*/
+
+
+ 
+                                                               /*メインのサイズ*/
+
+main{
+  margin-bottom:100px;
+  margin-top:100px
+}
+
+
+
+                                                            /*エラーコマンド共通*/
+.error {
+    font-size:12px;
+    font-weight: bold;
+    color: tomato;
+}
+
+                                                            /*編集コマンド共通*/
+.command {
+   font-size:10px;
+}
+
+
+                                                            /*テーブル共通*/
+table , td, th {
+  border:8px #F2F2E1 solid;    /*ベージュ*/
+  border-collapse: collapse;
+  text-align:center;
+  font-weight:normal;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+caption {
+    font-weight:bold;
+    font-size:18px;
+}
+
+td, th {
+  padding: 10px;
+  height: 15px;
+  font-size:12px;
+}
+th {
+  background-color: #2CA676;    /*グリーン*/
+  font-weight: bold;
+  width:300px;
+}
+td {
+  background-color: #e6ecf0;    /*グレー*/
+  width:200px;
+}
+
+.side{
+    margin-left:5px;
+    float: left;
+}
+
+.side th{
+    width:120px;
+}
+.side td{
+    width:180px;
+}
+
+.table_title{
+    margin-left:330px;
+    background-color:transparent;
+    width:350px;
+}
+
+.list_table {
+    margin-left:370px;
+}
+
+
+
+                                                        /*必須項目*/
+.label{
+    background-color:orange;    /*オレンジ*/
+    margin-left:5px;
+}
+
+.infobox {
+   margin-left:auto;
+   margin-right:auto;
+   margin-bottom:50px;
+   height: 20em;  /* 高さを制限(※) */
+   width:700px;
+   overflow: scroll; /* スクロールバーを表示(※) */
+   border: #2CA676 3px border;  /* 枠線を追加 */
+   background-color: #fff; /* 背景色を追加 */
+}
+
+.center {
+    text-align:center;
+}
+
+
+.box7{
+    padding: 1.0em;
+    margin: 2em 0;
+    margin-left:100px;
+    margin-right:100px;
+    background: #2CA676; ;/*背景色*/
+    border-left: double 7px #4ec4d3;/*左線*/
+    border-right: double 7px #4ec4d3;/*右線*/
+    list-style-type:none;
+}
+.box7 li {
+    margin:0;
+    padding: 0;
+
+}
+

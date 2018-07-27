@@ -1,0 +1,77 @@
+<%= form_for :worker, url: workers_path do |f|%>
+			<table>
+        			<colgroup>
+            			<col width="40%">
+            			<col width="60%">
+       			　 </colgroup>
+        		<tr>
+					<th>姓<span class="label label-blue">必須</span></br>
+									<small>例）山田</small></th>
+					<td><%= f.text_field :first_name%></td>
+				</tr>
+				<tr>
+					<th>名<span class="label label-blue">必須</span></br>
+									<small>例）太郎</small></th>
+					<td><%= f.text_field :last_name%></td>
+				</tr>
+				<tr>
+					<th>電話番号<span class="label label-blue">必須</span></br>
+									<small>例）000-0000-0000</small></th>
+					<td><%= f.telephone_field :tel%></td>
+				</tr>
+				<tr>
+					<th>メールアドレス<span class="label label-blue">必須</span></br>
+									<small>例）000@000.co.jp</small></th>
+					<td><%= f.email_field :e_mail%></td>
+				</tr>
+				<tr>
+					<th>郵便番号<span class="label label-blue">必須</span></br>
+									<small>例）000-0000</small></th>
+					<td><%= f.number_field :post_number%></td>
+				</tr>
+				<tr>
+					<th>住所<span class="label label-blue">必須</span></br>
+									<small>例）東京都東京市東京町1-1-1</small></th>
+					<td><%= f.text_field :address%></td>
+				</tr>
+				<tr>
+					<th>生年月日<span class="label label-blue">必須</span></br>
+									<small>例）1990/10/20</small></th>
+					<td><%= f.date_field :birthday%></td>
+				</tr>
+				<tr>
+					<th>労働者区分<span class="label label-blue">必須</span></br>
+									<small>例）正社員</small></th>
+					<td><%= f.select :classification, ['正社員', '有期契約社員', 'パートタイマー'],
+							{ include_blank: '選択してください' } %></td>
+				</tr>
+				<tr>
+					<th>権限<span class="label label-blue">必須</span></br>
+									<small>例）スタッフ</small></th>
+					<td><%= f.select :authority, ['管理権限者','事務権限者','一般スタッフ'],
+							{ include_blank: '選択してください' } %></td>
+				</tr>
+				<tr>
+					<th>入社日<span class="label label-blue">必須</span></br>
+									<small>例）2018/1/1</small></th>
+					<td><%= f.date_field :hire_date%></td>
+				</tr>
+				<tr>
+					<th>退社日<span class="label label-blue">必須</span></br>
+									<small>例）2018/6/1</small></th>
+					<td><%= f.date_field :departure_date%></td>
+				</tr>
+				<tr>
+					<th>所属<span class="label label-blue">必須</span></br>
+									<small>例）本社</small></th>
+					<td><%= f.select :affiliation, ['本社','支社'],
+						{ include_blank:'選択してください' } %></td>
+				</tr>
+				<tr>
+			<td colspan="2"> 
+				<%= f.submit '登録', data: { confirm: '登録しますか？'}%>
+			</td>
+			</tr>
+			</table>
+		<% end %> 
+		

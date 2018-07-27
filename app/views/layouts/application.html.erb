@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = "ja">
+ <head>
+       <title>勤怠管理システム『SMART』労働基準法を遵守した唯一の勤怠管理システム</title>
+              <meta charset="utf-8">
+              <!--　レスポンシブの定義　-->
+               <meta name="viewport" content="width=device-width, initial-scale=1,0">
+    
+               <%= csrf_meta_tags %>
+
+               <link rel="stylesheet" href="application.scss">
+               <link rel="stylesheet" href="workers.scss">
+                <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+                 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<header>
+    <div class="container">
+      <div class="header-left">
+                <%= link_to '/home' do %>
+                    <%= image_tag("rogo.png", :class => "menu_icon")%>
+                <% end %>      </div>
+      <div class="header-right">
+        <!-- user/signed_in? はユーザーがログインしているか調べるdeviseのHelperメソッド -->
+            
+           <%= link_to  'ホーム', '/home' %>
+           <%= link_to  '出勤簿', '/attends' %>
+                    <!-- シフト表・出勤簿・シフト作成-->
+            <%= link_to  '賃金台帳' %>
+                    <!-- 給与明細・給与編集・賃金台帳・賞与台帳-->
+           <%= link_to  '情報変更' , '/home/list' %>
+
+           <%= link_to  '従業員登録' ,'/workers/new'%>
+           
+            <% if user_signed_in? %>
+            <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
+            <!-- *_path はUserモデルを作成したときに、deviseにより自動で作成されてますので、rake routesで確認できます -->
+                    <strong><% current_user.email  %></strong>
+                        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            <% else %>
+                        <%= link_to "ログイン", new_user_session_path%>
+             <% end %>
+      </div>
+    </div>
+
+</header>
+
+<body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <main>
+    <%= yield %>
+    </main>
+</body>
+</html>

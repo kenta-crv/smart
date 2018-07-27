@@ -1,0 +1,85 @@
+       <%= form_for @company do |f| %>
+
+   	<table>
+      <tbody>
+      <tr>
+        <th>会社名</th>
+        <td><%= text_field :company,  :company%>
+                <% if @company.errors.messages[:company].any? %>
+                <span class="error"><@post.errors.messages[:company][0] %></span>
+                <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>姓</th>
+        <td><%= text_field :company, :first_name%></td>
+        </td>
+      </tr>
+      <tr>
+        <th>名</th>
+        <td><%= text_field :company, :last_name%></td>
+      </tr>
+      <tr>
+        <th>セイ</th>
+        <td><%= text_field :company, :first_kana%></td>
+      </tr>
+      <tr>
+        <th>メイ</th>
+        <td><%= text_field :company, :last_kana%></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= number_field :company, :tel %></td>
+      </tr>
+      <tr>
+        <th>携帯番号</th>
+        <td><%= number_field :company, :mobile %></td>
+      </tr>
+      <tr>
+        <th>FAX番号</th>
+        <td><%= number_field :company, :fax %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= email_field :company, :e_mail %>
+        </td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= number_field :company, :postnumber%>
+        </td>
+      </tr>
+      <tr>
+        <th>都道府県</th>
+        <td><%= text_field :company, :prefecture%></td>
+      </tr>
+      <tr>
+        <th>市町村</th>
+        <td><%= text_field :company, :city%></td>
+      </tr>
+      <tr>
+        <th>市町村以降</th>
+        <td><%= text_field :company, :town%></td>
+      </tr>
+      <tr>
+        <th>資本金</th>
+        <td><%= text_field :company, :caption%></td>
+      </tr>
+      <tr>
+        <th>労働保険番号</th>
+        <td><%= text_field :company, :labor_number%></td>
+      </tr>
+      <tr>
+        <th>雇用保険番号</th>
+        <td><%= text_field :company, :employment_number%></td>
+      </tr>
+        <tr>
+			<td colspan="2"> 
+				<%= f.submit '登録', data: { confirm: '登録しますか？'}%>
+			</td>
+		</tr>
+      </tbody>
+    </table> 
+
+   <% end %>
+<div>

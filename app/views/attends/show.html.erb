@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>従業員指名</strong>
+  <%= @attend.user %>
+</p>
+
+<p>
+  <strong>出勤</strong>
+  <%= @attend.start_at %>
+</p>
+
+<p>
+  <strong>休憩開始</strong>
+  <%= @attend.rest_start_at %>
+</p>
+
+<p>
+  <strong>休憩終了</strong>
+  <%= @attend.rest_end_at %>
+</p>
+
+<p>
+  <strong>退勤</strong>
+  <%= @attend.end_at %>
+</p>
+
+<%= link_to 'Edit', edit_attend_path(@attend) %> |
+<%= link_to 'Back', attends_path %>

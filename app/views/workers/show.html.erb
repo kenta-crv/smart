@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<!-- 企業情報 -->
+  <div class="beige-wrapper">
+  
+            <div class="heading"><h2>顧客詳細情報</h2>
+            <p>detailed information</p></div>
+            
+            <table>
+      			<tbody>
+      					<tr>
+      						<th>姓</th>
+        					<td><%= @worker.first_name %></td>
+      					</tr>
+      					<tr>
+        					<th>名</th>
+        					<td><%= @worker.last_name %></td>
+      					</tr>
+      					<tr>
+      						<th>電話番号</th>
+        					<td><%= @worker.tel %></td>
+      					</tr>
+      					<tr>
+        					<th>メールアドレス</th>
+        					<td><%= @worker.e_mail %></td>
+      					</tr>
+      					<tr>
+      						<th>郵便番号</th>
+        					<td><%= @worker.post_number %></td>
+      					</tr>
+      					<tr>
+        					<th>住所</th>
+        					<td><%= @worker.address %></td>
+      					</tr>
+      					<tr>
+      						<th>生年月日</th>
+        					<td><%= @worker.birthday %></td>
+      					</tr>
+      					<tr>
+        					<th>労働者区分</th>
+        					<td><%= @worker.classification %></td>
+      					</tr>
+      					<tr>
+      						<th>権限</th>
+        					<td><%= @worker.authority %></td>
+      					</tr>
+      					<tr>
+        					<th>入社日</th>
+        					<td><%= @worker.hire_date %></td>
+      					</tr>
+      					<tr>
+      						<th>退社日</th>
+        					<td><%= @worker.departure_date %></td>
+      					</tr>
+      					<tr>
+        					<th>所属</th>
+        					<td><%= @worker.affiliation %></td>
+      					</tr>
+      			</tbody>
+      		</table>      			
+
+
+ </div>

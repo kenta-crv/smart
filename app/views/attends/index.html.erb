@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="beige-wrapper">
+  
+            <div class="heading"><h2>出勤状況一覧</h2>
+            <p>Attendance Status List</p></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>従業員指名</th>
+      <th>出勤</th>
+      <th>休憩開始</th>
+      <th>休憩終了</th>
+      <th>退勤</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attends.each do |attend| %>
+      <tr>
+        <td><%= attend.user %></td>
+        <td><%= attend.start_at %></td>
+        <td><%= attend.rest_start_at %></td>
+        <td><%= attend.rest_end_at %></td>
+        <td><%= attend.end_at %></td>
+        <td><%= link_to '詳細', attend %>｜
+               <%= link_to '編集', edit_attend_path(attend) %>｜
+               <%= link_to '削除', attend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>
+
+<%= link_to '出勤を追加', new_attend_path %>
