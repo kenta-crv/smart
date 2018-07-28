@@ -16,18 +16,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @company = Company.new(company_params)
     @employment = Employment.new(employment_params)
-    if @company.valid?
-        if @employment.valid?
-            super do |resource|
-          if resource.errors.present?
-                render :new and return
-          end
-            @company.save
-            @employment.company = @company
-            @employment.save
-            resource.update(company: @company)
+    if @company.valid? && @employment.valid?
+      super do |resource|
+        if resource.errors.present?
+          render :new and return
         end
+        @company.save
+        @employment.company = @company
+        @employment.user = resource
+        @employment.save
+        resource.update(company: @company)
       end
+    else
+      build_resource(sign_up_params)
+      render :new
     end
   end
 

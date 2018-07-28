@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require_tree .
 // 
 //= require jquery 
@@ -28,9 +27,9 @@ $(function(){
 
 $(function(){
     //ログインをクリックした際にフェードイン
-    $('#login-show').click(function(){
-        $('#login-show').fadeIn();
-    });
+  $('#login-show').click(function(){
+      $('#login-show').fadeIn();
+  });
     
     //新規登録をクリックした際にフェードイン
   $('.signup-show').click(function() {
@@ -38,9 +37,8 @@ $(function(){
   });
   
   //新規登録とログインを閉じる時のフェードアウト
-     $('.close-modal').click(function(){
+  $('.close-modal').click(function(){
     $('#login-modal').fadeOut();
     $('#signup-modal').fadeOut();    
   });
-  
-  
+});
