@@ -6,7 +6,7 @@ class ContactController < ApplicationController
   end
    
   def confirm
-    @contact = Contact.new(params[:contact])
+    @contact = Contact.new(contact_params)
     if @contact.valid?
       render :action => 'confirm'
     else
@@ -15,9 +15,15 @@ class ContactController < ApplicationController
   end
      
   def thanks
-    @contact = Contact.new(params[:contact])
+    @contact = Contact.new(contact_params)
     ContactMailer.received_email(@contact).deliver
-   
+
     render :action => 'thanks'
+  end
+
+  private
+
+  def contact_params
+    params.require(:contact).permit(:name, :email, :message)
   end
 end

@@ -6,5 +6,4 @@ class ContactMailer < ActionMailer::Base
     @contact = contact
     mail(:subject => 'お問い合わせを承りました')
   end
-     
 end
