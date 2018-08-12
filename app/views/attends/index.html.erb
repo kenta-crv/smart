@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
   <div class="beige-wrapper">
-  
+
             <div class="heading"><h2>出勤状況一覧</h2>
             <p>Attendance Status List</p></div>
 
@@ -20,7 +20,7 @@
   <tbody>
     <% @attends.each do |attend| %>
       <tr>
-        <td><%= attend.user %></td>
+        <td><%= attend.user.first_name %></td>
         <td><%= attend.start_at %></td>
         <td><%= attend.rest_start_at %></td>
         <td><%= attend.rest_end_at %></td>

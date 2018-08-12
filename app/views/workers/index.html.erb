@@ -1,25 +1,20 @@
   <div class="beige-wrapper">
-  
+
             <div class="heading"><h2>従業員一覧</h2>
             <p>Employee List</p></div>
 
 		<table>
       		<tbody>
       				<tr>
-      					<th>姓</th>
-      					<th>名</th>
-      					<th>労働者区分</th>
-      					<th>編集/削除</th>
-      				</tr>
-      				<tr>
       				<% @workers.each do |worker| %>
-        				<td><%= link_to worker.first_name, worker_path(worker) %></td>
-        				<td><%= worker.last_name %></td>
+        				<td><%= link_to worker.first_name, root_path(worker_id: worker.id) %></td>
+                <td><%= t("activerecord.status.#{worker.status}") %></td>
+        				<!-- <td><%= worker.last_name %></td>
         				<td><%= worker.classification  %></td>
         				<td><%= link_to '編集', edit_worker_path(worker), class: 'command' %>｜
-        				        <%= link_to '削除', worker_path(worker), method: :delete, class: 'command', data:  { confirm: '本当に削除しますか？'} %></td>
+        				        <%= link_to '削除', worker_path(worker), method: :delete, class: 'command', data:  { confirm: '本当に削除しますか？'} %></td> -->
       				</tr>
       				<% end %>
            	</tbody>
-		</table>  		   
+		</table>
 </div>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class Users::RegistrationsController < Devise::RegistrationsController
 
-    
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
         layout "top", only: [:new]
@@ -79,21 +79,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  
-  
+
+  protected
+
+  def after_sign_up_path_for(resource)
+    new_worker_path
+  end
+
    private
     def company_params
       params.require(:company).permit(
       :company,
       :first_name,
-      :last_name, 
-      :first_kana, 
+      :last_name,
+      :first_kana,
       :last_kana,
       :tel,
       :mobile,
-      :fax, 
-      :e_mail, 
-      :postnumber, 
+      :fax,
+      :e_mail,
+      :postnumber,
       :prefecture,
       :city,
       :town,
@@ -101,8 +106,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :labor_number,
       :employment_number
     )
-    end    
-  
+    end
+
 
    private
     def employment_params
@@ -121,5 +126,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
       :desuction
       )
       end
-      
+
 end

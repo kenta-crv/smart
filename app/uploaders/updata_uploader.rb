@@ -1,5 +1,5 @@
 class UpdataUploader < CarrierWave::Uploader::Base
-mount_uploader :updata, UpdataUploader
+  mount_uploader :updata, UpdataUploader
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

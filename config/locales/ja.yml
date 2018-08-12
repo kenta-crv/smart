@@ -31,6 +31,10 @@
 
 ja:
   activerecord:
+    status:
+      attendance: 出勤中
+      un_attendance: 未出勤
+      rest: 休憩中
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
