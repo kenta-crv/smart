@@ -18,6 +18,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  status_cd      :integer          default(0)
+#  company_id     :integer
 #
 
 require 'test_helper'

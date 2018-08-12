@@ -18,8 +18,11 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  status_cd      :integer          default(0)
+#  company_id     :integer
 #
 
 class Worker < ApplicationRecord
-  as_enum :status, attendance: 1, un_attendance: 0, rest:2 
+  as_enum :status, attendance: 1, un_attendance: 0, rest:2
+  has_many :attends
+
 end

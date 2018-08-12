@@ -26,5 +26,4 @@ class User < ApplicationRecord
 
   belongs_to :company, optional: true
   # belongs_to :worker, optional: true
-  has_many :attends
 end

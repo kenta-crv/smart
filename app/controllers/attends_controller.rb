@@ -66,7 +66,9 @@ class AttendsController < MainController
   end
 
   def start
-    @attend = Attend.new(user: current_user, start_at: Time.current)
+    @worker = Worker.find(params[:worker_id].to_i) if params[:worker_id].present?
+    redirect_to root_path if @worker.blank?
+    @attend = Attend.new(worker: @worker, start_at: Time.current)
     respond_to do |format|
       if @attend.save
         format.html { redirect_to root_path, notice: '出勤中です' }
@@ -92,9 +94,9 @@ class AttendsController < MainController
       end
     end
   end
-  
-  
-  
+
+
+
   def rest_time_start
     @attend.rest_start_at = Time.current
 
@@ -134,5 +136,3 @@ class AttendsController < MainController
       params.require(:attend).permit(:user_id, :start_at, :end_at)
     end
 end
-
-
