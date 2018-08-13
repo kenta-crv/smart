@@ -24,6 +24,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :company, optional: true
+  # belongs_to :company, optional: true
   # belongs_to :worker, optional: true
+  has_many :companies
+  has_many :workers, through: :companies
 end

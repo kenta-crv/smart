@@ -1,6 +1,7 @@
 class AttendsController < MainController
   #ユーザー認証設定
   before_action :set_attend, only: [:show, :edit, :update, :destroy, :rest_time_start, :rest_time_end]
+  before_action :set_worker, only: [:start, :finish, :rest_time_start, :rest_time_end]
 
   # GET /attends
   # GET /attends.json
@@ -66,14 +67,13 @@ class AttendsController < MainController
   end
 
   def start
-    @worker = Worker.find(params[:worker_id].to_i) if params[:worker_id].present?
     redirect_to root_path if @worker.blank?
     @attend = Attend.new(worker: @worker, start_at: Time.current)
     respond_to do |format|
       if @attend.save
-        format.html { redirect_to root_path, notice: '出勤中です' }
+        format.html { redirect_to root_path(worker_id: @worker.try(:id)), notice: '出勤中です' }
       else
-        format.html { redirect_to root_path, errors: @attend.errors }
+        format.html { redirect_to root_path(worker_id: @worker.try(:id)), errors: @attend.errors }
         format.json { render json: @attend.errors, status: :unprocessable_entity }
       end
     end
@@ -82,14 +82,15 @@ class AttendsController < MainController
 
   def finish
     # @attend = current_user.attends.find_by("attends.start_at >= ? and attends.end_at = ?", Time.current.at_beginning_of_day, nil)
-    @attend = current_user.attends.started.last
+    redirect_to root_path if @worker.blank?
+    @attend = @worker.attends.started.last
     @attend.end_at = Time.current
 
     respond_to do |format|
       if @attend.save
-        format.html { redirect_to root_path, notice: '退勤しました' }
+        format.html { redirect_to root_path(worker_id: @worker.try(:id)), notice: '退勤しました' }
       else
-        format.html { redirect_to root_path, errors: @attend.errors }
+        format.html { redirect_to root_path(worker_id: @worker.try(:id)), errors: @attend.errors }
         format.json { render json: @attend.errors, status: :unprocessable_entity }
       end
     end
@@ -98,26 +99,30 @@ class AttendsController < MainController
 
 
   def rest_time_start
+    redirect_to root_path if @worker.blank?
+
     @attend.rest_start_at = Time.current
 
     respond_to do |format|
       if @attend.save
-        format.html { redirect_to root_path, notice: '休憩中です' }
+        format.html { redirect_to root_path(worker_id: @worker.try(:id)), notice: '休憩中です' }
       else
-        format.html { redirect_to root_path, errors: @attend.errors }
+        format.html { redirect_to root_path(worker_id: @worker.try(:id)), errors: @attend.errors }
         format.json { render json: @attend.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def rest_time_end
+    redirect_to root_path if @worker.blank?
+
     @attend.rest_end_at = Time.current
 
     respond_to do |format|
       if @attend.save
-        format.html { redirect_to root_path, notice: '出勤中です' }
+        format.html { redirect_to root_path(worker_id: @worker.try(:id)), notice: '出勤中です' }
       else
-        format.html { redirect_to root_path, errors: @attend.errors }
+        format.html { redirect_to root_path(worker_id: @worker.try(:id)), errors: @attend.errors }
         format.json { render json: @attend.errors, status: :unprocessable_entity }
       end
     end
@@ -129,6 +134,10 @@ class AttendsController < MainController
     # Use callbacks to share common setup or constraints between actions.
     def set_attend
       @attend = Attend.find(params[:id])
+    end
+
+    def set_worker
+      @worker = Worker.find(params[:worker_id].to_i) if params[:worker_id].present?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

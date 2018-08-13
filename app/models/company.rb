@@ -44,8 +44,9 @@ class Company < ApplicationRecord
     has_many :infos
     has_many :workers
     has_many :pictures, dependent: :destroy
-    
-    
+    belongs_to :user, optional: true
+
+
 	validates :company, presence: true
-	
+
 end

@@ -19,13 +19,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @company.valid? && @employment.valid?
       super do |resource|
         if resource.errors.present?
+          logger.debug resource.errors
           render :new and return
         end
+        @company.user = resource
         @company.save
         @employment.company = @company
         @employment.user = resource
         @employment.save
-        resource.update(company: @company)
+        #resource.update(company: @company)
       end
     else
       build_resource(sign_up_params)

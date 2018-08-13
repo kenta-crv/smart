@@ -1,9 +1,9 @@
   <div class="beige-wrapper">
-            <%- if @worker.present? -%>
-              <div class=""><%= @worker.first_name %>さんの勤怠</div>
-            <%- end -%>
             <div class="heading"><h2>出退勤管理</h2>
             <p>Time leaving home</p></div>
+            <%- if @worker.present? -%>
+              <h3 class=""><%= @worker.first_name %>さんの勤怠</h3>
+            <%- end -%>
 
 
 
@@ -18,7 +18,7 @@
   <%- if @current_attend.present? -%>
     <div class="square_btn stump">出勤</div>
   <%- elsif @worker.present?-%>
-    <%= link_to("出勤", start_attends_path(worker_id: @worker.id), class: "square_btn stump") %>
+    <%= link_to("出勤", start_attends_path(worker_id: @worker.try(:id)), class: "square_btn stump") %>
   <%- else -%>
     <div class="square_btn stump">出勤</div>
   <%- end -%>
@@ -28,17 +28,17 @@
 
   <%- if @current_attend.present? -%>
     <%- if @current_attend.rest_start_at.blank? -%>
-      <%= link_to("休憩開始", rest_time_start_attend_path(@current_attend), class: "square_btn stump") %>
+      <%= link_to("休憩開始", rest_time_start_attend_path(id: @current_attend, worker_id: @worker.try(:id)), class: "square_btn stump") %>
       <div class="square_btn stump">休憩終了</div>
     <%- else -%>
       <div class="square_btn stump">休憩開始</div>
       <%- if @current_attend.rest_end_at.blank? -%>
-        <%= link_to("休憩終了", rest_time_end_attend_path(@current_attend), class: "square_btn stump") %>
+        <%= link_to("休憩終了", rest_time_end_attend_path(id: @current_attend, worker_id: @worker.try(:id)), class: "square_btn stump") %>
       <%- else -%>
         <div class="square_btn stump">休憩終了</div>
       <%- end -%>
     <%- end -%>
-    <%= link_to("退勤", finish_attend_path(@worker.attends.started.last), class: "square_btn stump") %>
+    <%= link_to("退勤", finish_attend_path(id: @worker.attends.started.last, worker_id: @worker.try(:id)), class: "square_btn stump") %>
   <%- else -%>
     <div class="square_btn stump">休憩開始</div>
     <div class="square_btn stump">休憩終了</div>
