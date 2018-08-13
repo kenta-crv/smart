@@ -71,6 +71,8 @@ class AttendsController < MainController
     @attend = Attend.new(worker: @worker, start_at: Time.current)
     respond_to do |format|
       if @attend.save
+        @worker.status = :attendance
+        @worker.save
         format.html { redirect_to root_path(worker_id: @worker.try(:id)), notice: '出勤中です' }
       else
         format.html { redirect_to root_path(worker_id: @worker.try(:id)), errors: @attend.errors }
@@ -88,6 +90,8 @@ class AttendsController < MainController
 
     respond_to do |format|
       if @attend.save
+        @worker.status = :un_attendance
+        @worker.save
         format.html { redirect_to root_path(worker_id: @worker.try(:id)), notice: '退勤しました' }
       else
         format.html { redirect_to root_path(worker_id: @worker.try(:id)), errors: @attend.errors }
@@ -105,6 +109,8 @@ class AttendsController < MainController
 
     respond_to do |format|
       if @attend.save
+        @worker.status = :rest
+        @worker.save
         format.html { redirect_to root_path(worker_id: @worker.try(:id)), notice: '休憩中です' }
       else
         format.html { redirect_to root_path(worker_id: @worker.try(:id)), errors: @attend.errors }
@@ -120,6 +126,8 @@ class AttendsController < MainController
 
     respond_to do |format|
       if @attend.save
+        @worker.status = :attendance
+        @worker.save
         format.html { redirect_to root_path(worker_id: @worker.try(:id)), notice: '出勤中です' }
       else
         format.html { redirect_to root_path(worker_id: @worker.try(:id)), errors: @attend.errors }
