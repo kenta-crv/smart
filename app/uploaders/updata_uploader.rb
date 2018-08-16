@@ -1,5 +1,6 @@
 class UpdataUploader < CarrierWave::Uploader::Base
-mount_uploader :updata, UpdataUploader
+  #この部分でエラーが出そうです。確認した方がいいかもしれません(takigawa/temy13)
+  mount_uploader :updata, UpdataUploader
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

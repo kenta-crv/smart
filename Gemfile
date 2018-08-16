@@ -65,3 +65,8 @@ gem 'redis'
 gem 'redis-rails'
 
 gem 'carrierwave'
+
+
+# add by takigawa(temy13)
+gem 'annotate'
+gem 'simple_enum'
