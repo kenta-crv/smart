@@ -5,7 +5,7 @@
             <div class="heading"><h2>出勤状況一覧</h2>
             <p>Attendance Status List</p></div>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>従業員指名</th>
@@ -35,6 +35,36 @@
 
 <br>
 
-</div>
-
+</div> -->
+<table>
+  <thead>
+    <tr>
+      <td colspan="<%=(@d.end_of_month.day+1 - @d.beginning_of_month.day) %>">
+        <%= (@d.strftime("%-m月")) %>
+      </td>
+    </tr>
+    <tr>
+      <td>名前</td>
+      <% (@d.end_of_month.day+1 - @d.beginning_of_month.day).times do |n| %>
+        <td><%= (@d.beginning_of_month + n).strftime("%-d(#{%w(日 月 火 水 木 金 土)[(@d.beginning_of_month + n).wday]})") %></td>
+      <% end %>
+      <td>合計</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @workers.all.each do |worker| %>
+      <tr>
+        <td><%= worker.first_name %></td>
+        <% (@d.end_of_month.day+1 - @d.beginning_of_month.day).times do |n| %>
+          <td>
+            <div><%=worker.attends.day_attend((@d.beginning_of_month + n)).first.try(:start) %></div>
+            <div><%=worker.attends.day_attend((@d.beginning_of_month + n)).first.try(:end) %></div>
+          </td>
+        <% end %>
+        <td><%= time_view(worker.attends.month_attends(@d).map{|a| a.working_time}.sum) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= link_to '出勤を追加', new_attend_path %>
+<div><%= link_to "給料明細", salary_workers_path %></div>

@@ -1,3 +1,4 @@
+require 'date'
 class AttendsController < MainController
   #ユーザー認証設定
   before_action :set_attend, only: [:show, :edit, :update, :destroy, :rest_time_start, :rest_time_end]
@@ -7,6 +8,8 @@ class AttendsController < MainController
   # GET /attends.json
   def index
     @attends = Attend.all
+    @workers = Worker.all
+    @d = Date.today
   end
 
   # GET /attends/1

@@ -52,3 +52,4 @@ build-iPhoneSimulator/
 # add by takigawa(temy13)
 log/*.log
 db/*.sqlite3
+.DS_Store

@@ -1,0 +1,33 @@
+<div class="beige-wrapper">
+
+  <div class="heading">
+    <h2>給料明細</h2>
+    <p></p>
+  </div>
+
+  <table>
+    <thead>
+      <tr collapse="4">
+        <th><%= "#{@d.month}月" %></th>
+      </tr>
+      <tr>
+        <th>従業員</th>
+        <th>勤務時間</th>
+        <th>時給</th>
+        <th>給料</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @workers.each do |worker| %>
+        <tr>
+          <td><%= worker.first_name %></td>
+          <td><%= time_view(worker.attends.month_attends(@d).map{|a| a.working_time}.sum) %></td>
+          <td><%= 1000 %></td>
+          <td><%= month_salary(worker.attends.month_attends(@d).map{|a| a.working_time}.sum, 1000) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+</div>
