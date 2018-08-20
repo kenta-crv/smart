@@ -5,15 +5,15 @@ before_action :authenticate_user!
   def index
   	 @workers = Worker.all.order(created_at: 'desc')
   end
-  
+
   def show
   	@worker = Worker.find_by(id: params[:id])
   end
-  
-  def new 
+
+  def new
     @worker = Worker.new
   end
- 
+
  def create
      # render plain: params[:post].inspect
     # save
@@ -27,7 +27,7 @@ before_action :authenticate_user!
         render 'new'
     end
   end
-  
+
   def edit
     @workers = Worker.find(params[:id])
   end
@@ -38,15 +38,19 @@ before_action :authenticate_user!
         redirect_to workers_path
     else
         render 'edit'
-    end      
+    end
  end
- 
+
  def destroy
     @workers = Worker.find(params[:id])
     @workers.destroy
     redirect_to workers_path
  end
 
+def salary
+  @workers = Worker.all
+  @d = Date.today
+end
 
   # 帳票出力処理
   def print
@@ -135,6 +139,6 @@ before_action :authenticate_user!
       :departure_date,
       :affiliation
       )
-    end    
+    end
 
 end
